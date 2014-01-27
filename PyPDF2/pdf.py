@@ -1812,8 +1812,8 @@ class PageObject(DictionaryObject):
                         page2.mediaBox.getUpperRight_x().as_numeric(), page2.mediaBox.getUpperRight_y().as_numeric(),
                         page2.mediaBox.getLowerRight_x().as_numeric(), page2.mediaBox.getLowerRight_y().as_numeric()]
             if ctm is not None:
-                new_x = [ctm[0]*corners2[i] + ctm[2]*corners2[i+1] + ctm[4] for i in range(0, 8, 2)]
-                new_y = [ctm[1]*corners2[i] + ctm[3]*corners2[i+1] + ctm[5] for i in range(0, 8, 2)]
+                new_x = [ctm[0]*corners2[i] + ctm[2]*corners2[i+1] + float(ctm[4]) for i in range(0, 8, 2)]
+                new_y = [ctm[1]*corners2[i] + ctm[3]*corners2[i+1] + float(ctm[5]) for i in range(0, 8, 2)]
             else:
                 new_x = corners2[0:8:2]
                 new_y = corners2[1:8:2]
