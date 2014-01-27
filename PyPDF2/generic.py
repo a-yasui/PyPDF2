@@ -469,7 +469,15 @@ class NameObject(str, PdfObject):
             name += tok
         if debug: print(name)
         try:
-            return NameObject(name.decode('utf-8'))
+            name = name.decode("sjis")
+        except Exception, e:
+            try:
+                name = name.decode("utf8")
+            except Exception, e:
+                pass
+        if debug: print(name)
+        try:
+            return NameObject(name.encode("utf8"))
         except UnicodeDecodeError as e:
             # Name objects should represent irregular characters
             # with a '#' followed by the symbol's hex number
